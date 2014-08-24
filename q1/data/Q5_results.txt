@@ -1,0 +1,38 @@
+mean(DT$pwgtp15,by=DT$SEX)
+NO - not broken down by sex
+[1] 98.21613
+Time:
+   user  system elapsed 
+   0.11    0.00    0.11 
+
+#2 
+NO - doesnt compile
+rowMeans(DT)[DT$SEX==1]
+rowMeans(DT)[DT$SEX==2]
+
+sapply(split(DT$pwgtp15,DT$SEX),mean)
+       1        2 
+99.80667 96.66534 
+Time:
+   user  system elapsed 
+   1.07    0.00    1.06 
+==> WINNER!!!
+
+mean(DT[DT$SEX==1,]$pwgtp15)
+mean(DT[DT$SEX==2,]$pwgtp15)
+NO: SLOOOOWWWW
+
+tapply(DT$pwgtp15,DT$SEX,mean)
+       1        2 
+99.80667 96.66534 
+Time:
+   user  system elapsed 
+   1.76    0.00    1.76 
+
+DT[,mean(pwgtp15),by=SEX]
+   SEX       V1
+1:   1 99.80667
+2:   2 96.66534
+Time:
+   user  system elapsed 
+   1.28    0.00    1.28 
